@@ -1,3 +1,5 @@
+import styles from "../../../styles/movie-detail.module.css";
+
 async function getBookDetail(id: string) {
     return fetch(`https://books-api.nomadcoders.workers.dev/list?name=${id}`)
         .then(res => res.json())
@@ -52,20 +54,21 @@ interface IBookDetailInfo {
 export default async function List({ params }) {
     const { id } = await params;
     const bookDeatil: IBookData[] = await getBookDetail(id);
-    console.log(bookDeatil)
     return (
-        <div>
+        <div className={styles.container}>
             <h1>{id.replaceAll("-", " ")}</h1>
-            {bookDeatil.map((book) => (
-                <div>
-                    <img src={book.book_image} alt={book.title} />
-                    <h3>{book.title}</h3>
-                    <p>{book.author}</p>
-                    <button>
-                        <a href={book.amazon_product_url}>But now &rarr;</a>
-                    </button>
-                </div>
-            ))}
+            <div className={styles.gridWrapper}>
+                {bookDeatil.map((book) => (
+                    <div>
+                        <img src={book.book_image} alt={book.title} />
+                        <h3>{book.title}</h3>
+                        <p>{book.author}</p>
+                        <button>
+                            <a href={book.amazon_product_url}>But now &rarr;</a>
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

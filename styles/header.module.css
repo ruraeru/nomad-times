@@ -1,9 +1,14 @@
 .container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
   background-color: red;
 
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  height: 60px;
+  align-items: center;
+  margin: 0 auto;
   font-size: 36px;
 
   text-decoration: underline;
