@@ -1,0 +1,10 @@
+.container {
+  background-color: red;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  font-size: 36px;
+
+  text-decoration: underline;
+}
