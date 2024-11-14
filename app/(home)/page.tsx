@@ -27,10 +27,12 @@ export default async function Home() {
             <div className={styles.listWrapper}>
                 <h1>The New York Times Best Seller Explorer</h1>
                 <ul>
-                    {bookList.results.map((book) => (
-                        <li>
-                            <Link href={`/list/${book.list_name_encoded}`}>{book.display_name}</Link>
-                        </li>
+                    {bookList.results.map((book, index) => (
+                        <Link key={index} href={`/list/${book.list_name_encoded}`}>
+                            <li>
+                                {book.display_name}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>

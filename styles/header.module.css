@@ -6,9 +6,10 @@
 
   display: flex;
   justify-content: space-between;
-  height: 60px;
   align-items: center;
-  margin: 0 auto;
+
+  padding: 20px;
+
   font-size: 36px;
 
   text-decoration: underline;
