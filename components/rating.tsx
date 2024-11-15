@@ -1,12 +1,12 @@
-export default function Rating({ rank, lastWeekRank }: { rank: number, lastWeekRank: number }) {
+export default function Rating({ className, rank, lastWeekRank }: { rank: number, lastWeekRank: number, className: string }) {
     if (rank === 0 || lastWeekRank === 0) {
-        return <p>_</p>
+        return <span>_</span>
     }
     if (rank - lastWeekRank === 0) {
-        return <p>_</p>
+        return <span>_</span>
     } else if (rank > lastWeekRank) {
-        return <p>{rank - lastWeekRank} &darr;</p>
+        return <span>&darr; {rank - lastWeekRank}</span>
     } else {
-        return <p>{lastWeekRank - rank} &uarr;</p>
+        return <span>&uarr; {lastWeekRank - rank}</span>
     }
 };

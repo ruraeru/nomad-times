@@ -4,7 +4,8 @@ export default function About() {
             backgroundColor: "blue",
             height: "100vh",
             color: "white",
-            marginTop: "60px"
+            marginTop: "75px"
+
         }}>
             <h1>About</h1>
             <p>Welcome to the official explorer for The New York Times Best Seller list explorer.</p>
