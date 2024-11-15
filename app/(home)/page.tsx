@@ -22,6 +22,7 @@ interface IBookList {
 
 export default async function Home() {
     const bookList: IBookList = await getBookList();
+    console.log(bookList)
     return (
         <div className={styles.container}>
             <div className={styles.listWrapper}>

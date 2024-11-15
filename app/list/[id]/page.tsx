@@ -1,3 +1,5 @@
+import Rating from "../../../components/rating";
+import { useRating } from "../../../hook/useRating";
 import styles from "../../../styles/movie-detail.module.css";
 
 async function getBookDetail(id: string) {
@@ -91,7 +93,7 @@ export default async function List({ params }) {
                                 </button>
                             </div>
                             <div className={styles.cardInfo}>
-                                <svg className={book.rank !== 1 && styles.hide} xmlns="http://www.w3.org/2000/svg" width="118" height="24" fill="none" viewBox="0 0.5 118 24">
+                                <svg className={book.rank !== 1 ? styles.hide : "best"} xmlns="http://www.w3.org/2000/svg" width="118" height="24" fill="none" viewBox="0 0.5 118 24">
                                     <desc>교보문고 Best 1</desc>
                                     <path fill="url(#badge_first_rank_svg__a)" d="M0 8.5a8 8 0 0 1 8-8h110v16a8 8 0 0 1-8 8H0z" />
                                     <mask id="badge_first_rank_svg__b" width="118" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
@@ -107,19 +109,19 @@ export default async function List({ params }) {
                                     </g>
                                     <defs>
                                         <linearGradient id="badge_first_rank_svg__a" x1="-5" x2="123" y1="28.5" y2="7" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#3853E3" />
-                                            <stop offset="1" stop-color="#44D166" />
+                                            <stop stopColor="#3853E3" />
+                                            <stop offset="1" stopColor="#44D166" />
                                         </linearGradient>
                                         <linearGradient id="badge_first_rank_svg__c" x1="94.202" x2="118.994" y1="21.156" y2="8.782" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#fff" />
-                                            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+                                            <stop stopColor="#fff" />
+                                            <stop offset="1" stopColor="#fff" stopOpacity="0" />
                                         </linearGradient>
                                         <linearGradient id="badge_first_rank_svg__d" x1="80.5" x2="50.251" y1="9.5" y2="48.041" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#fff" />
-                                            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+                                            <stop stopColor="#fff" />
+                                            <stop offset="1" stopColor="#fff" stopOpacity="0" />
                                         </linearGradient>
-                                        <filter id="badge_first_rank_svg__e" width="86.835" height="20.392" x="25.516" y="4.948" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <filter id="badge_first_rank_svg__e" width="86.835" height="20.392" x="25.516" y="4.948" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+                                            <feFlood floodOpacity="0" result="BackgroundImageFix" />
                                             <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
                                             <feOffset dy="2" />
                                             <feGaussianBlur stdDeviation="2.5" />
@@ -130,7 +132,13 @@ export default async function List({ params }) {
                                         </filter>
                                     </defs>
                                 </svg>
-                                <p className={book.rank === 1 && styles.hide}>{book.rank} | {book.rank_last_week === 0 ? "_" : book.rank_last_week}</p>
+                                <div className={book.rank === 1 ? styles.hide : styles.rating}>
+                                    <p
+                                        className={book.rank === 1 ? styles.hide : ""}>{book.rank}
+                                    </p>
+                                    |
+                                    <Rating lastWeekRank={book.rank_last_week} rank={book.rank} />
+                                </div>
                                 <ul className={styles.tagList}>
                                     {book.buy_links.map((link) => (
                                         <li>
