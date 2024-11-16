@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "../../styles/home.module.css";
+import SearchHeader from "../../components/search";
 
 async function getBookList() {
     return fetch("https://books-api.nomadcoders.workers.dev/lists").then(res => res.json());
@@ -14,28 +15,31 @@ interface IBookListInfo {
     updated: string;
 }
 
-interface IBookList {
+export interface IBookList {
     copyright: string;
     num_results: number;
     results: IBookListInfo[];
 }
 
+
 export default async function Home() {
     const bookList: IBookList = await getBookList();
-    console.log(bookList)
     return (
         <div className={styles.container}>
             <div className={styles.listWrapper}>
                 <h1>The New York Times Best Seller Explorer</h1>
-                <ul>
-                    {bookList.results.map((book, index) => (
-                        <Link key={index} href={`/list/${book.list_name_encoded}`}>
-                            <li>
-                                {book.display_name}
-                            </li>
-                        </Link>
-                    ))}
-                </ul>
+                <SearchHeader bookList={bookList && bookList} />
+                <div>
+                    <ul>
+                        {bookList.results.map((book, index) => (
+                            <Link key={index} href={`/list/${book.list_name_encoded}`}>
+                                <li>
+                                    {book.display_name}
+                                </li>
+                            </Link>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )

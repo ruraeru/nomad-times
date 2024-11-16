@@ -1,5 +1,4 @@
 import Rating from "../../../components/rating";
-import { useRating } from "../../../hook/useRating";
 import styles from "../../../styles/movie-detail.module.css";
 
 async function getBookDetail(id: string) {
@@ -67,24 +66,26 @@ export default async function List({ params }) {
             <div>
                 <div className={styles.bookGrid}>
                     {bookDeatil.books.map((book) => (
-                        <div className={styles.bookCard}>
-                            <div className={styles.cardInfo}>
-                                <div className={styles.imgContainer}>
-                                    <img src={book.book_image} />
+                        <a href={book.amazon_product_url}>
+                            <div className={styles.bookCard}>
+                                <div className={styles.cardInfo}>
+                                    <div className={styles.imgContainer}>
+                                        <img src={book.book_image} />
+                                    </div>
+                                    <div className={styles.rankContainer}>
+                                        <p className={styles.rank}>{book.rank}</p>
+                                        <Rating rank={book.rank} lastWeekRank={book.rank_last_week} />
+                                    </div>
+                                    <div className={styles.bookInfo}>
+                                        <p className={styles.title}>{book.title}</p>
+                                        <p className={styles.author}>{book.author}</p>
+                                    </div>
                                 </div>
-                                <div className={styles.rankContainer}>
-                                    <p className={styles.rank}>{book.rank}</p>
-                                    <Rating className={styles.rankState} rank={book.rank} lastWeekRank={book.rank_last_week} />
-                                </div>
-                                <div className={styles.bookInfo}>
-                                    <p className={styles.title}>{book.title}</p>
-                                    <p className={styles.author}>{book.author}</p>
+                                <div className={styles.promotion}>
+                                    <strong>{book.description}</strong>
                                 </div>
                             </div>
-                            <div className={styles.promotion}>
-                                sada
-                            </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>
