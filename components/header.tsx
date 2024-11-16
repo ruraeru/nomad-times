@@ -9,10 +9,18 @@ export default function Header() {
     return (
         <div className={styles.container}>
             <p>
-                <Link href="/">Home</Link> {pathname === "/" && "🔥"}
+                <Link
+                    href="/"
+                    className={pathname === "/" ? styles.active : ""}>
+                    메인
+                </Link>
             </p>
             <p>
-                <Link href="/about">About</Link> {pathname === "/about" && "🔥"}
+                <Link
+                    href="/about"
+                    className={pathname === "/about" ? styles.active : ""}>
+                    더보기
+                </Link>
             </p>
         </div>
     )

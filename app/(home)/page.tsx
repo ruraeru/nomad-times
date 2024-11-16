@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "../../styles/home.module.css";
-import SearchHeader from "../../components/search";
 
 async function getBookList() {
     return fetch("https://books-api.nomadcoders.workers.dev/lists").then(res => res.json());
@@ -28,7 +27,8 @@ export default async function Home() {
         <div className={styles.container}>
             <div className={styles.listWrapper}>
                 <h1>The New York Times Best Seller Explorer</h1>
-                <SearchHeader bookList={bookList && bookList} />
+                {/* 추후 확장 예정 sorting 기능 */}
+                {/* <SearchHeader /> */}
                 <div>
                     <ul>
                         {bookList.results.map((book, index) => (
@@ -39,6 +39,7 @@ export default async function Home() {
                             </Link>
                         ))}
                     </ul>
+
                 </div>
             </div>
         </div>

@@ -5,11 +5,11 @@ interface RatingProps {
 }
 
 export default function Rating({ rank, lastWeekRank }: RatingProps) {
-    const isNoChange = rank === 0 || lastWeekRank === 0 || rank === lastWeekRank;
+    const isNotChange = rank === 0 || lastWeekRank === 0 || rank === lastWeekRank;
     const isDecreased = rank > lastWeekRank;
     const difference = rank - lastWeekRank;
 
-    if (isNoChange) {
+    if (isNotChange) {
         return (
             <span className={styles.ratingFlex}>
                 _

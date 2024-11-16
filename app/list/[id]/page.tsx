@@ -1,6 +1,10 @@
 import Rating from "../../../components/rating";
 import styles from "../../../styles/movie-detail.module.css";
 
+export const metadata = {
+    title: "bookList"
+}
+
 async function getBookDetail(id: string) {
     return fetch(`https://books-api.nomadcoders.workers.dev/list?name=${id}`)
         .then(res => res.json())
@@ -62,10 +66,12 @@ export default async function List({ params }) {
     console.log(bookDeatil);
     return (
         <div className={styles.container}>
+            {/* 제목에 있는 "-"를 공백으로 치환하여 보여줌 */}
             <h1>{id.replaceAll("-", " ")}</h1>
             <div>
                 <div className={styles.bookGrid}>
                     {bookDeatil.books.map((book) => (
+                        //카드 전체 클릭 시 아마존 구매 링크로 감
                         <a href={book.amazon_product_url}>
                             <div className={styles.bookCard}>
                                 <div className={styles.cardInfo}>
@@ -74,6 +80,7 @@ export default async function List({ params }) {
                                     </div>
                                     <div className={styles.rankContainer}>
                                         <p className={styles.rank}>{book.rank}</p>
+                                        {/* 지난 주 랭크와 현재 랭크의 차이를 보여줌 */}
                                         <Rating rank={book.rank} lastWeekRank={book.rank_last_week} />
                                     </div>
                                     <div className={styles.bookInfo}>
@@ -81,8 +88,8 @@ export default async function List({ params }) {
                                         <p className={styles.author}>{book.author}</p>
                                     </div>
                                 </div>
-                                <div className={styles.promotion}>
-                                    <strong>{book.description}</strong>
+                                <div className={styles.description}>
+                                    <strong>{book.description.slice(0, 150)}...</strong>
                                 </div>
                             </div>
                         </a>
