@@ -63,7 +63,6 @@ interface IBookDetailInfo {
 export default async function List({ params }) {
     const { id } = await params;
     const bookDeatil: IBookDetailInfo = await getBookDetail(id);
-    console.log(bookDeatil);
     return (
         <div className={styles.container}>
             {/* 제목에 있는 "-"를 공백으로 치환하여 보여줌 */}
