@@ -88,7 +88,7 @@ export default async function List({ params }) {
                                     </div>
                                 </div>
                                 <div className={styles.description}>
-                                    <strong>{book.description.slice(0, 150)}...</strong>
+                                    <strong>{book.description}</strong>
                                 </div>
                             </div>
                         </a>
